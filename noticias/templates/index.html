@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Todas Las Noticas</title>
-</head>
-<body>
-	
-</body>
-</html>
+{%extends 'base.html'%}
+
+{%block content%}
+	<h1>Todas Las Noticias</h1>
+	{%for n in noticias%}
+		<h2>{{n.titulo}}</h2>
+		<p>{{n.autor}}</p>
+	{%endfor%}
+{%endblock content%}

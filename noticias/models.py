@@ -10,6 +10,8 @@ class Noticia (models.Model):
 	fuente = models.CharField(max_length=200)
 	slug = models.SlugField(max_length=200, unique_for_date='fecha')
 
-class Meta:
-	ordering = ('-fecha', '-categoria',)
-# Create your models here.
+	class Meta:
+		ordering = ('-fecha', '-categoria',)
+	# Create your models here.
+
+	#def get_absolute_url()
