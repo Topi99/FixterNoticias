@@ -12,12 +12,15 @@ class ListView(View):
 		return render(request, template_name, context)
 
 class DetalleView(View):
-	def get(self, request):
+	def get(self, request, id):
 		template_name = "detalle.html"
-		titulo = Noticia.objects.titulo
-		autor = Noticia.objects.autor
+		noticia = Noticia.objects.get(id=id)
+		titulo = noticia.titulo
+		autor = noticia.autor
+		cuerpo = noticia.cuerpo
 		context = {
 			'titulo':titulo,
+			'cuerpo':cuerpo,
 			'autor':autor
 		}
 		return render(request, template_name, context)

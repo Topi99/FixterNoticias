@@ -3,7 +3,7 @@
 {%block content%}
 	<h1>Todas Las Noticias</h1>
 	{%for n in noticias%}
-		<h2>{{n.titulo}}</h2>
-		<p>{{n.autor}}</p>
+		<h3><a href="{{n.id}}" class="grey-text text-darken-4">{{n.titulo}}</a></h3>
+		<p>Autor: <b>{{n.autor}}</b></p>
 	{%endfor%}
 {%endblock content%}
