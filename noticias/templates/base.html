@@ -9,7 +9,14 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+	
+	<style>
+		{%block styles%}
 
+		{%endblock styles%}
+	
+	</style>
+	
 </head>
 <body class="grey lighten-1">
 
@@ -23,13 +30,24 @@
 			</ul>
 		</div>
 	</nav>
+	
+	{%block header%}
+
+	{%endblock header%}
+
 
 	<section class="section">
-		<article class="white container" style="padding:30px; border-radius:5px;">
+		<article class="white container" style="padding:2%; border-radius:5px;">
 			{%block content%}
 
 			{%endblock content%}
 		</article>
 	</section>
+
+	<script>
+	{%block scripts%}
+	{%endblock scripts%}
+	</script>
+
 </body>
 </html>

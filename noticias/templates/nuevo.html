@@ -1,0 +1,12 @@
+{%extends 'base.html'%}
+
+{%block content%}
+	<form action="." method ="POST">
+		
+		{%csrf_token%}
+		{{form.as_p}}
+
+		<input type="submit" class="btn grey darken-4 white-text" value="Publicar">
+
+	</form>
+{%endblock content%}
