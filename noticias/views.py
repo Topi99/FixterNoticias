@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.utils.text import slugify
 from .models import Noticia
-from .forms import NuevoForm
+from .forms import NuevoForm, CommentForm
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -19,14 +19,26 @@ class ListView(View):
 class DetalleView(View):
 	def get(self, request, id):
 		template_name = "detalle.html"
+		comment_form = CommentForm()
 		noticia = Noticia.objects.get(id=id)
 		context = {
-			'noticia':noticia
+			'noticia':noticia,
+			'comment_form':comment_form
 		}
 		return render(request, template_name, context)
 
+	def post(self, request, id):
+		comment_form = CommentForm(request.POST)
+		if comment_form.is_valid():
+			new_comment = comment_form.save(commit=False)
+			new_comment.noticia = Noticia.objects.get(id=id)
+			new_comment.autor = request.user
+			new_comment.save()
+			return redirect('noticias:detalle', id=id)
+		else:
+			return redirect('noticias:detalle', id=id)
+
 class NewView(View):
-	@method_decorator(login_required)
 	def get(self, request):
 		template_name = "nuevo.html"
 		form = NuevoForm()

@@ -7,6 +7,11 @@
 			bottom:0;
 			padding-left:17%;
 			width:100%;
+			margin-bottom: 0;
+			background: -webkit-linear-gradient(bottom, rgba(0,0,0,.9) 0%,  rgba(0,0,0,0) 100%);
+		}
+		.smaller{
+			font-size:90%;
 		}
 {%endblock styles%}
 
@@ -21,9 +26,38 @@
 
 
 {%block content%}
-	<p>Por: <b>{{noticia.autor}}</b></p>
-	<p class="flow-text"> {{noticia.cuerpo}} </p>
-	<a href="/noticias">Regresar</a>
+	<p class="col s6">Por: <b>{{noticia.autor}}</b></p>
+	<p class="col s6">Fecha de Publicacion: <b>{{noticia.fecha}}</b></p>
+	<p class="col s6">Categoria: <b> {{noticia.categoria}} </b></p>
+	<p class="col s6">Region: <b> {{noticia.region}} </b></p>
+	<p class="col s6">Fuente: <b> {{noticia.fuente}} </b></p>
+	<p class="flow-text col s12"> {{noticia.cuerpo}} </p>
+	<a href="/noticias" class="btn col s4">Regresar</a>
+
+	<div class="comment col s12">
+		<h2>Escribe:</h2>
+		<form action="." method="POST">
+			{%csrf_token%}
+			<div class="input-field">
+				{{comment_form}}
+				<input type="submit" class="btn">
+			</div>
+		</form>
+		<h2>Todos los comentarios:</h2>
+		{%for c in noticia.comentarios.all%}
+			<div class="col s12 card grey lighten-3">
+				<div class="card-title">
+					{{c.autor.username}}
+					<small><em>{{c.fecha}}</em></small>
+				</div>
+				<div class="card-content">
+					<p>
+						{{c.cuerpo}}
+					</p>
+				</div>
+			</div>
+		{%endfor%}
+	</div>
 {%endblock content%}
 
 {%block scripts%}

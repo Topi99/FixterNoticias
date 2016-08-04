@@ -14,6 +14,17 @@ class Noticia (models.Model):
 
 	class Meta:
 		ordering = ('-fecha', '-categoria',)
-	# Create your models here.
 
 	#def get_absolute_url()
+
+class Comment(models.Model):
+	autor = models.ForeignKey(User, related_name='comentarios')
+	noticia = models.ForeignKey(Noticia, related_name='comentarios')
+	fecha = models.DateTimeField(auto_now=True)
+	cuerpo = models.TextField()
+
+	def __str__(self):
+		return '{} comento en {}'.format(self.autor, self.noticia)
+
+	class Meta:
+		ordering = ('-fecha',)

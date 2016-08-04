@@ -19,17 +19,18 @@
 	
 </head>
 <body class="grey lighten-1">
-
-	<nav>
-		<div class="nav-wrapper grey darken-4">
-			<a href="/noticias" class="brand-logo">Noticias</a>
-			<ul class="right">
-				<li><a href="#!">Noticas</a></li>
-				<li><a href="#!">Nuevo</a></li>
-				<li><a href="#!">Otra Cosa</a></li>
-			</ul>
-		</div>
-	</nav>
+	<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper grey darken-4">
+				<a href="{%url 'noticias:index'%}" class="brand-logo">Noticias</a>
+				<ul class="right">
+					<li><a href="{%url 'noticias:index'%}">Noticas</a></li>
+					<li><a href="{%url 'noticias:new'%}">Nuevo</a></li>
+				</ul>
+			</div>
+		</nav>
+		
+	</div>
 	
 	{%block header%}
 
@@ -37,7 +38,7 @@
 
 
 	<section class="section">
-		<article class="white container" style="padding:2%; border-radius:5px;">
+		<article class="white container row" style="padding:2%; border-radius:5px;">
 			{%block content%}
 
 			{%endblock content%}
